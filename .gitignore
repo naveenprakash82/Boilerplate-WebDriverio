@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Test output
+logs/
+reports/
+allure-results/
+allure-report/
+coverage/
+.tmp/
+tmp/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Local machine and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Common generated files
+*.log
+npm-debug.log*
