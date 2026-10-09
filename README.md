@@ -1,56 +1,52 @@
-# WebdriverIO Test Automation Starter
+# WebdriverIO Test Reliability Examples
 
-This repository contains a small, practical example of browser automation using WebdriverIO and JavaScript. It demonstrates a readable test structure, clear assertions and waits based on the state of a page rather than fixed delays.
+This project brings together small browser tests and a transparent way to review repeated test outcomes. It is intended for engineers who want to understand test failures, keep examples reproducible and make their automation easier to maintain.
 
-The example uses a local HTML fixture generated inside the test suite. It does not access a live service or require an account.
+The browser tests use a locally generated sample sign in page. A separate JavaScript utility summarizes repeated test outcomes and distinguishes consistent results from runs that contain both passes and failures.
 
-## Requirements
+## Getting started
 
-* Node.js 22 or a compatible supported release
-* npm
-* Google Chrome or Chromium
-
-WebdriverIO may download a compatible browser driver when necessary. Internet access may be required for initial installation.
-
-## Run the tests
+Requirements: Node.js 22, npm and Chrome or Chromium.
 
 ```bash
 npm install
 npm test
+npm run test:unit
 ```
 
-Run only the smoke test:
-
-```bash
-npm run test:smoke
-```
-
-Check JavaScript syntax:
+To check syntax or run the smoke scenario:
 
 ```bash
 npm run check
+npm run test:smoke
 ```
 
-For installations where the browser cannot be detected, set `CHROME_BINARY` to the full path of Chrome or Chromium.
+## Analyze repeated test results
 
-## Included examples
+```bash
+npm run analyze -- examples/sample-runs.json
+```
 
-* `test/fixtures/loginFixture.js` defines a self contained sample sign in page.
-* `test/pageobjects/login.page.js` keeps selectors and page interactions in one place.
-* `test/specs/login.e2e.js` tests successful sign in, incorrect credentials and missing fields.
-* `test/helpers/waitForResult.js` waits for a result rather than an arbitrary number of seconds.
-* `wdio.conf.js` contains the browser and test runner configuration.
-* `docs/flaky-tests.md` explains how to investigate unreliable browser tests.
-* `.github/workflows/browser-tests.yml` checks syntax and runs the browser suite on pushes and pull requests.
+The input is a JSON array of test identifiers, execution identifiers and outcomes. The utility reports execution counts, failure rates, skipped runs and whether passing and failing outcomes were both observed. It does not claim to identify the underlying cause of failure.
 
-## Reliability and limitations
+See [the reliability analysis guide](docs/reliability-analysis.md) for the input format, interpretation and limitations. The example data is entirely synthetic.
 
-The tests are intentionally small and independent of public demonstration sites. They illustrate testing patterns and are not a substitute for testing a real application. The workflow provides a repeatable execution path, but its status should be checked before treating a change as verified.
+## Project contents
 
-## Contributions
+* [Browser test scenarios](test/specs/login.e2e.js), [page object](test/pageobjects/login.page.js) and [locally defined page](test/fixtures/loginFixture.js)
+* [Result based wait helper](test/helpers/waitForResult.js)
+* [Independent result analysis](src/reliability/analyzeRuns.js) and [unit tests](test/unit/analyzeRuns.test.js)
+* [Guidance for investigating unstable tests](docs/flaky-tests.md)
+* [Automated checks](.github/workflows/browser-tests.yml)
 
-Suggestions and improvements are welcome. Please open an issue describing the problem or proposed change before beginning substantial work.
+## Scope and limitations
 
-## Responsible use
+This repository demonstrates a small engineering approach, not a proven new industry method or a production grade reliability service. Its failure categories are descriptive. Reproducibility and independent assessment matter more than collecting repository activity. External adoption, practical performance and meaningful comparison with existing tools have not yet been established.
 
-Do not commit credentials, personal information, confidential documents or code owned by an employer or client without permission.
+## Contributing
+
+Please start with an issue explaining the problem and a small reproducible example. Changes should include tests and a clear explanation of their expected benefit. Feedback and independent evaluation are welcome.
+
+## Privacy and ownership
+
+All example results are invented and all demonstration code is written for this repository. Do not submit employer or client source code, internal test data, private incident reports, credentials, customer information or confidential system details. Check ownership and approval before sharing anything derived from work projects.
