@@ -1,0 +1,17 @@
+{
+  "name": "web-test-reliability-examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small, self contained WebdriverIO examples for browser test reliability",
+  "scripts": {
+    "test": "wdio run ./wdio.conf.js",
+    "test:smoke": "wdio run ./wdio.conf.js --mochaOpts.grep smoke",
+    "check": "node --check wdio.conf.js && node --check test/fixtures/loginFixture.js && node --check test/pageobjects/login.page.js && node --check test/specs/login.e2e.js && node --check test/helpers/waitForResult.js"
+  },
+  "devDependencies": {
+    "@wdio/cli": "^9.0.0",
+    "@wdio/local-runner": "^9.0.0",
+    "@wdio/mocha-framework": "^9.0.0",
+    "@wdio/spec-reporter": "^9.0.0"
+  }
+}
