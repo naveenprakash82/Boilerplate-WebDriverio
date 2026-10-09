@@ -1,0 +1,38 @@
+[
+  {
+    "testId": "sample login",
+    "runId": "sample-001",
+    "outcome": "passed",
+    "durationMs": 120
+  },
+  {
+    "testId": "sample login",
+    "runId": "sample-002",
+    "outcome": "failed",
+    "durationMs": 160
+  },
+  {
+    "testId": "sample login",
+    "runId": "sample-003",
+    "outcome": "passed",
+    "durationMs": 140
+  },
+  {
+    "testId": "sample checkout",
+    "runId": "sample-001",
+    "outcome": "passed",
+    "durationMs": 80
+  },
+  {
+    "testId": "sample checkout",
+    "runId": "sample-002",
+    "outcome": "passed",
+    "durationMs": 90
+  },
+  {
+    "testId": "sample checkout",
+    "runId": "sample-003",
+    "outcome": "passed",
+    "durationMs": 100
+  }
+]
