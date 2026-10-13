@@ -57,3 +57,42 @@ test('rejects invalid outcomes and durations', () => {
 test('handles an empty input without inventing results', () => {
   assert.deepEqual(analyzeRuns([]), []);
 });
+
+test('reports complete duration coverage', () => {
+  const result = analyzeRuns([
+    { testId: 'login', runId: '1', outcome: 'passed', durationMs: 100 },
+    { testId: 'login', runId: '2', outcome: 'failed', durationMs: 200 },
+    { testId: 'login', runId: '3', outcome: 'passed', durationMs: 150 }
+  ])[0];
+  assert.equal(result.durationSampleCount, 3);
+  assert.equal(result.durationCoverage, 1);
+});
+
+test('makes partial duration coverage explicit', () => {
+  const result = analyzeRuns([
+    { testId: 'login', runId: '1', outcome: 'passed', durationMs: 100 },
+    { testId: 'login', runId: '2', outcome: 'failed' },
+    { testId: 'login', runId: '3', outcome: 'passed' }
+  ])[0];
+  assert.equal(result.durationSampleCount, 1);
+  assert.equal(result.durationCoverage, 1 / 3);
+  assert.equal(result.averageDurationMs, 100);
+});
+
+test('skipped runs do not reduce duration coverage', () => {
+  const result = analyzeRuns([
+    { testId: 'login', runId: '1', outcome: 'passed', durationMs: 100 },
+    { testId: 'login', runId: '2', outcome: 'skipped', durationMs: 500 }
+  ])[0];
+  assert.equal(result.durationSampleCount, 1);
+  assert.equal(result.durationCoverage, 1);
+});
+
+test('reports no duration coverage when there are no executions', () => {
+  const result = analyzeRuns([
+    { testId: 'login', runId: '1', outcome: 'skipped' }
+  ])[0];
+  assert.equal(result.durationSampleCount, 0);
+  assert.equal(result.durationCoverage, null);
+  assert.equal(result.averageDurationMs, null);
+});
