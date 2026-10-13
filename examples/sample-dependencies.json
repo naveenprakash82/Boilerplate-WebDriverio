@@ -1,0 +1,16 @@
+[
+  {
+    "testId": "sample login",
+    "components": [
+      "authentication",
+      "session"
+    ]
+  },
+  {
+    "testId": "sample checkout",
+    "components": [
+      "cart",
+      "payments"
+    ]
+  }
+]
