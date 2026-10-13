@@ -1,0 +1,41 @@
+{
+  "suites": [
+    {
+      "title": "sample.spec.ts",
+      "file": "sample.spec.ts",
+      "suites": [],
+      "specs": [
+        {
+          "title": "signs in",
+          "file": "sample.spec.ts",
+          "tests": [
+            {
+              "projectName": "chromium",
+              "results": [
+                {
+                  "status": "passed",
+                  "duration": 25
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "handles invalid input",
+          "file": "sample.spec.ts",
+          "tests": [
+            {
+              "projectName": "chromium",
+              "results": [
+                {
+                  "status": "failed",
+                  "duration": 35
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
