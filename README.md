@@ -43,6 +43,14 @@ npm run playwright:convert -- run-001 examples/sample-playwright-report.json > p
 npm run analyze -- playwright-records.json
 ```
 
+To prioritize test investigations using run history and a synthetic dependency map:
+
+```bash
+npm run prioritize -- examples/sample-runs.json examples/sample-dependencies.json examples/sample-changed-components.json
+```
+
+See [the dependency prioritization guide](docs/dependency-prioritization.md) for the scoring approach, assumptions and limitations.
+
 See [the Playwright adapter guide](docs/playwright-json-adapter.md) for its supported fields and limitations.
 
 See [the Jest adapter guide](docs/jest-json-adapter.md) for supported fields and limitations.
@@ -53,6 +61,7 @@ See [the reliability analysis guide](docs/reliability-analysis.md) for the input
 
 * [Browser test scenarios](test/specs/login.e2e.js), [page object](test/pageobjects/login.page.js) and [locally defined page](test/fixtures/loginFixture.js)
 * [Result based wait helper](test/helpers/waitForResult.js)
+* [Dependency-based prioritization](src/reliability/priorityFromDependencies.js) with [unit tests](test/unit/priorityFromDependencies.test.js)
 * [Playwright JSON adapter](src/reliability/playwrightJsonAdapter.js) with [unit tests](test/unit/playwrightJsonAdapter.test.js)
 * [Jest JSON adapter](src/reliability/jestJsonAdapter.js) with [unit tests](test/unit/jestJsonAdapter.test.js)
 * [Independent result analysis](src/reliability/analyzeRuns.js) and [unit tests](test/unit/analyzeRuns.test.js)
