@@ -29,12 +29,22 @@ npm run analyze -- examples/sample-runs.json
 
 The input is a JSON array of test identifiers, execution identifiers and outcomes. The utility reports execution counts, failure rates, skipped runs and whether passing and failing outcomes were both observed. It does not claim to identify the underlying cause of failure.
 
+To convert an example Jest JSON report into this format:
+
+```bash
+npm run jest:convert -- run-001 examples/sample-jest-results.json > jest-records.json
+npm run analyze -- jest-records.json
+```
+
+See [the Jest adapter guide](docs/jest-json-adapter.md) for supported fields and limitations.
+
 See [the reliability analysis guide](docs/reliability-analysis.md) for the input format, interpretation and limitations. The example data is entirely synthetic.
 
 ## Project contents
 
 * [Browser test scenarios](test/specs/login.e2e.js), [page object](test/pageobjects/login.page.js) and [locally defined page](test/fixtures/loginFixture.js)
 * [Result based wait helper](test/helpers/waitForResult.js)
+* [Jest JSON adapter](src/reliability/jestJsonAdapter.js) with [unit tests](test/unit/jestJsonAdapter.test.js)
 * [Independent result analysis](src/reliability/analyzeRuns.js) and [unit tests](test/unit/analyzeRuns.test.js)
 * [Guidance for investigating unstable tests](docs/flaky-tests.md)
 * [Automated checks](.github/workflows/browser-tests.yml)
