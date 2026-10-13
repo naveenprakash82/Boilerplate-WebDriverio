@@ -31,7 +31,7 @@ Accepted outcomes are `passed`, `failed` and `skipped`. Duration is optional and
 * `no-executions` means there were no passed or failed executions to assess.
 * `insufficientEvidence` marks cases with fewer than three executed runs. Three is a reporting convention for this example, not a validated statistical threshold.
 
-Failure rate is the number of failed runs divided by passed plus failed runs. Skipped runs are reported separately. An average duration is provided only when at least one executed result includes a duration.
+Failure rate is the number of failed runs divided by passed plus failed runs. Skipped runs are reported separately. An average duration is provided only when at least one executed result includes a duration. The report also includes `durationSampleCount`, the number of executed runs with recorded durations, and `durationCoverage`, that count divided by all executed runs. If there are no executed runs, duration coverage is `null`. Skipped runs do not affect coverage, even if their records include a duration. An average based on incomplete timing data should not be interpreted as representative of all executions.
 
 ## Limitations and next steps
 
