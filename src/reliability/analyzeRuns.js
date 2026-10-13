@@ -47,6 +47,8 @@ function analyzeRuns(records) {
       : group.passed > 0 && group.failed > 0 ? 'mixed-outcomes'
       : group.failed > 0 ? 'consistently-failing'
       : 'consistently-passing';
+    const durationSampleCount = group.durations.length;
+    const durationCoverage = executed ? durationSampleCount / executed : null;
     const averageDurationMs = group.durations.length
       ? Math.round(group.durations.reduce((sum, duration) => sum + duration, 0) / group.durations.length)
       : null;
@@ -59,6 +61,8 @@ function analyzeRuns(records) {
       failureRate,
       classification,
       averageDurationMs,
+      durationSampleCount,
+      durationCoverage,
       insufficientEvidence: executed < 3
     };
   }).sort((a, b) => a.testId.localeCompare(b.testId));
