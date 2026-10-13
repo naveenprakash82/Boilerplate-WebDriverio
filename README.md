@@ -36,6 +36,15 @@ npm run jest:convert -- run-001 examples/sample-jest-results.json > jest-records
 npm run analyze -- jest-records.json
 ```
 
+To convert an example Playwright JSON reporter file:
+
+```bash
+npm run playwright:convert -- run-001 examples/sample-playwright-report.json > playwright-records.json
+npm run analyze -- playwright-records.json
+```
+
+See [the Playwright adapter guide](docs/playwright-json-adapter.md) for its supported fields and limitations.
+
 See [the Jest adapter guide](docs/jest-json-adapter.md) for supported fields and limitations.
 
 See [the reliability analysis guide](docs/reliability-analysis.md) for the input format, interpretation and limitations. The example data is entirely synthetic.
@@ -44,6 +53,7 @@ See [the reliability analysis guide](docs/reliability-analysis.md) for the input
 
 * [Browser test scenarios](test/specs/login.e2e.js), [page object](test/pageobjects/login.page.js) and [locally defined page](test/fixtures/loginFixture.js)
 * [Result based wait helper](test/helpers/waitForResult.js)
+* [Playwright JSON adapter](src/reliability/playwrightJsonAdapter.js) with [unit tests](test/unit/playwrightJsonAdapter.test.js)
 * [Jest JSON adapter](src/reliability/jestJsonAdapter.js) with [unit tests](test/unit/jestJsonAdapter.test.js)
 * [Independent result analysis](src/reliability/analyzeRuns.js) and [unit tests](test/unit/analyzeRuns.test.js)
 * [Guidance for investigating unstable tests](docs/flaky-tests.md)
