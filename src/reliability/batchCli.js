@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('node:fs');
+const path = require('node:path');
 const { analyzeReportBatch } = require('./batchAnalysis');
 
 function run(args = process.argv.slice(2)) {
@@ -8,8 +9,20 @@ function run(args = process.argv.slice(2)) {
   }
   const [format, ...pairs] = args;
   const runs = [];
+  const seenPaths = new Set();
   for (let i = 0; i < pairs.length; i += 2) {
-    runs.push({ runId: pairs[i], report: JSON.parse(fs.readFileSync(pairs[i + 1], 'utf8')) });
+    const file = pairs[i + 1];
+    let canonicalPath;
+    let report;
+    try {
+      canonicalPath = fs.realpathSync(path.resolve(file));
+      if (seenPaths.has(canonicalPath)) throw new Error('Duplicate report file');
+      seenPaths.add(canonicalPath);
+      report = JSON.parse(fs.readFileSync(canonicalPath, 'utf8'));
+    } catch (error) {
+      throw new Error('Failed to read ' + file + ': ' + error.message);
+    }
+    runs.push({ runId: pairs[i], report });
   }
   process.stdout.write(JSON.stringify(analyzeReportBatch(format, runs), null, 2) + '\n');
 }
