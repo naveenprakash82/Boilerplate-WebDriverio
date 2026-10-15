@@ -1,6 +1,6 @@
 # First public release plan
 
-Status: **Preparation only. No npm release or version tag has been published as part of this plan.**
+Status: **MIT license published. Release validation and versioned GitHub release are still pending. No npm release has been published.**
 
 ## Release goal
 
@@ -8,7 +8,7 @@ Offer a reproducible command-line utility for reviewing repeated test results an
 
 ## Release gates
 
-- [ ] Naveen reviews the code, confirms ownership and right to license all source and submitted content, and approves the MIT license on the default branch
+- [x] Maintainer ownership confirmation received; MIT license added to the default branch
 - [ ] Select a clear project and package name, check for name conflicts, and update repository description/topics
 - [ ] Confirm the normal installation path on a fresh checkout with a pinned lockfile and supported Node version
 - [ ] Run syntax checks, unit tests, and browser integration tests on the release commit
