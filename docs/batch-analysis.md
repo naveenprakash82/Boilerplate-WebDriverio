@@ -1,11 +1,9 @@
-# Compare multiple test executions without manual JSON merging
+# Compare separate Jest or Playwright CI reports
 
-Use `analyze:batch` with separate Jest or Playwright JSON reporter outputs. Supply a unique run ID for each report.
+Use `npm run analyze:batch -- jest <runId> <report.json> [<runId> <report.json> ...]`, replacing `jest` with `playwright` for Playwright JSON output.
 
-```bash
-npm run analyze:batch -- jest ci-001 examples/sample-jest-results.json ci-002 examples/sample-jest-results-run2.json
-```
+Run IDs are trimmed and must be unique. The CLI rejects repeated report file paths, including symlinks to the same file. Identical content copied to distinct files is not detected; use independently generated CI artifacts. Do not mix reporter formats in one invocation.
 
-For Playwright, replace `jest` with `playwright`. Do not mix formats in one invocation.
+Each test summary includes `totalRuns`, `observedRuns`, `runsSeen`, and `missingRuns`. Missing tests are not counted as skipped. Failure rates use executed outcomes only, so compare rates together with observation coverage and `insufficientEvidence`. The Playwright adapter uses the final retry outcome per run; retries do not count as independent executions.
 
-A run ID must uniquely identify an execution. Test IDs must remain stable across reports. Playwright's final retry is treated as the run result; a retry within one execution is not an independent run. Missing tests are not treated as skipped. Observed failure rates are descriptive, not predictions of future failures. Use only synthetic or authorized reports.
+This analysis is descriptive, not predictive. Only use synthetic or authorized test reports.
