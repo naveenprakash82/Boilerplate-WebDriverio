@@ -1,10 +1,10 @@
-# First public release plan
+# Release checklist
 
 Status: **MIT license published. Release validation and versioned GitHub release are still pending. No npm release has been published.**
 
 ## Release goal
 
-Offer a reproducible command-line utility for reviewing repeated test results and dependency-based test investigation priority. The first release should be suitable for evaluation, not advertised as an established predictive system.
+Offer a reproducible command-line utility for reviewing repeated test results and dependency-based test investigation priority. Do not describe the heuristic as a calibrated predictive model.
 
 ## Release gates
 
@@ -16,14 +16,14 @@ Offer a reproducible command-line utility for reviewing repeated test results an
 - [ ] Define stable input schema, errors, and compatibility policy for Playwright and Jest adapters
 - [ ] Add coverage for reporter version differences and invalid or incomplete inputs
 - [ ] Compare output against a documented baseline on a permitted public or synthetic dataset
-- [ ] Obtain independent technical feedback and address correctness issues
+- [ ] Address reported correctness issues and confirm documented behavior
 - [ ] Review security, dependency risks, licensing, privacy, and contributor acknowledgments
 - [ ] Prepare a changelog and a GitHub release with a versioned tag
 - [ ] Consider npm only after ownership confirmation, packaging checks, and approval; keep the package private until then
 
 ## Proposed first release notes, not yet published
 
-**Initial evaluation release**
+**Initial release**
 
 - Analyzes repeated passed, failed, and skipped test results without connecting to external services
 - Reports observed failure frequencies, mixed outcomes, and timing-data coverage
@@ -32,7 +32,3 @@ Offer a reproducible command-line utility for reviewing repeated test results an
 - Includes synthetic fixtures, tests, and documentation
 
 **Limitations:** No calibrated prediction of future failures, no inferred source-code dependencies, no automated remediation, and no verified external adoption. Reporter compatibility must be assessed against specific upstream versions.
-
-## Measuring adoption responsibly
-
-Record independently submitted issues, externally authored pull requests, reproducible examples from permitted third parties, verified integrations, and references by unrelated maintainers. Stars and forks are weak signals alone. Do not request artificial engagement or overstate impact.
