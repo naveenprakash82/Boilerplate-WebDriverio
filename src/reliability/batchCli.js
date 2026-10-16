@@ -3,6 +3,18 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { analyzeReportBatch } = require('./batchAnalysis');
 
+
+// Parsed JSON can be equivalent even when whitespace or object-key order differs.
+// This is a warning signal, not proof that two CI runs are the same execution.
+function stableJson(value) {
+  if (Array.isArray(value)) return '[' + value.map(stableJson).join(',') + ']';
+  if (value !== null && typeof value === 'object') {
+    return '{' + Object.keys(value).sort().map(key =>
+      JSON.stringify(key) + ':' + stableJson(value[key])).join(',') + '}';
+  }
+  return JSON.stringify(value);
+}
+
 const USAGE = 'Usage: npm run analyze:batch -- <jest|playwright> <runId> <report.json> [<runId> <report.json> ...]';
 
 function buildSummary(args, warn = message => console.error(message)) {
@@ -11,6 +23,7 @@ function buildSummary(args, warn = message => console.error(message)) {
   const runs = [];
   const filesSeen = new Map();
   const digestsSeen = new Map();
+  const semanticDigestsSeen = new Map();
   for (let i = 0; i < pairs.length; i += 2) {
     const runId = pairs[i];
     const file = pairs[i + 1];
@@ -32,10 +45,16 @@ function buildSummary(args, warn = message => console.error(message)) {
     try { report = JSON.parse(content); }
     catch (error) { throw new Error('Invalid JSON in ' + file + ': ' + error.message); }
     const digest = crypto.createHash('sha256').update(content).digest('hex');
+    const semanticDigest = crypto.createHash('sha256').update(stableJson(report)).digest('hex');
     if (digestsSeen.has(digest)) {
       warn('Warning: reports for runs "' + digestsSeen.get(digest) + '" and "' + runId +
         '" are byte-identical; confirm they are separate executions.');
-    } else digestsSeen.set(digest, runId);
+    } else if (semanticDigestsSeen.has(semanticDigest)) {
+      warn('Warning: reports for runs "' + semanticDigestsSeen.get(semanticDigest) +
+        '" and "' + runId + '" are semantically identical JSON; confirm they are separate executions.');
+    }
+    if (!digestsSeen.has(digest)) digestsSeen.set(digest, runId);
+    if (!semanticDigestsSeen.has(semanticDigest)) semanticDigestsSeen.set(semanticDigest, runId);
     runs.push({ runId, report });
   }
   return analyzeReportBatch(format, runs);

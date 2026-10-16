@@ -55,3 +55,26 @@ test('read and parse errors identify the file', () => {
   });
   assert.throws(() => buildSummary(['jest','ci-1','/nonexistent/report.json']), /Cannot read report \/nonexistent\/report\.json/);
 });
+
+test('warns when report JSON is semantically identical despite formatting and key order', () => {
+  const first = report('passed');
+  const reordered = {testResults:[{
+    assertionResults:[{duration:10,status:'passed',fullName:'calculates total'}],
+    name:'cart.test.js'
+  }]};
+  withFiles([JSON.stringify(first),JSON.stringify(reordered,null,2)], ([a,b]) => {
+    const warnings = [];
+    const summary = buildSummary(['jest','ci-1',a,'ci-2',b], message => warnings.push(message));
+    assert.equal(summary[0].executed,2);
+    assert.equal(warnings.length,1);
+    assert.match(warnings[0],/semantically identical JSON/);
+  });
+});
+
+test('does not warn when report content differs meaningfully', () => {
+  withFiles([report('passed'),report('failed')], ([a,b]) => {
+    const warnings = [];
+    buildSummary(['jest','ci-1',a,'ci-2',b], message => warnings.push(message));
+    assert.deepEqual(warnings,[]);
+  });
+});
