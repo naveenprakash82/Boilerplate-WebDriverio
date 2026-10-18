@@ -4,7 +4,7 @@
 
 ## Goal
 
-Make the current test reliability toolkit independently reproducible and useful enough to solicit specific engineering evaluations. This is **not** a plan to generate stars, endorsements, artificial references or an EB-1A impact claim. No external adoption has yet been established.
+Make the current test reliability toolkit independently reproducible and useful enough to solicit specific engineering evaluations. This is **not** a plan to generate stars, endorsements, artificial references or unsupported adoption claims. No external adoption has yet been established.
 
 ## Priority gates before outreach
 
@@ -35,10 +35,10 @@ Aim to invite 10–15 relevant engineers, starting with technical peers in QA in
 
 Track each invited person's *permitted public* organization/role, date, whether the evaluation was hands-on, what they found, any accepted improvements, and whether a separate project actually integrated the code. Obtain consent before identifying individuals, employers or quoting comments. Do not store private contact details or internal test artifacts in this public repo.
 
-## EB-1A evidentiary standard
+## Interpreting external engineering feedback
 
-Attorney feedback identified the critical gap as verified influence/adoption outside Yahoo. A newly published tool, a few GitHub stars, feedback, an accepted patch in an unrelated project, and genuine third-party integration are different evidence categories. Do not conflate them.
+A published repository, GitHub stars, code review, successful independent reproduction, accepted technical changes and verified integration into a separate project represent different levels of engineering engagement. Do not treat one as evidence of another.
 
-Maintain a separate verified record of past contributions, third-party integration evidence, permissions and technical impact for counsel; avoid turning this public engineering repository into immigration promotional material.
+Retain reproducible technical findings and permitted public references. Keep private contact information, nonpublic organizational details and attribution permissions outside this repository.
 
 See [independent-use documentation](INDEPENDENT_USE.md).

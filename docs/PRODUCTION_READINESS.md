@@ -15,7 +15,7 @@
 
 - **Early engineering feedback:** reasonable after CI and 15-minute evaluation work; describe the software as a prototype.
 - **Production adoption invitation:** wait until all release gates pass, including independent reproducibility and benchmark claims that survive scrutiny.
-- **EB-1A impact evidence:** independent use needs externally verifiable records; no claim of major significance follows from publishing a repository.
+- **Independent-use evidence:** distinguish feedback, successful reproduction, accepted technical fixes and verifiable downstream integration. Publishing a repository alone does not establish adoption.
 
 ## Required technical follow-up
 
