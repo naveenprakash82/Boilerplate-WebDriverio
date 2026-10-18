@@ -1,6 +1,6 @@
 # External adoption readiness sprint — 19–23 October 2026
 
-**Owner:** Naveen Prakash. **Outreach target:** week of 26 October 2026, only after maintainer review.
+**Owner:** Naveen Prakash. **External sharing target:** Friday, 23 October 2026, after maintainer review and a verified release-readiness assessment. If production release gates are not met, share only as an accurately labelled technical preview.
 
 ## Goal
 
@@ -24,10 +24,9 @@ Make the current test reliability toolkit independently reproducible and useful 
 | Tue 20 Oct | JUnit XML adapter with regression fixtures and malformed input tests | Verified tests and clearly scoped reporter compatibility |
 | Wed 21 Oct | Baseline ranking comparison and transparent limitations | Versioned dataset, script, result summary |
 | Thu 22 Oct | CI integration example and repeatable multi-run history instructions | Public end-to-end reproduction and artifacts |
-| Fri 23 Oct | Release-readiness review with Naveen; decide blockers and final guide | PASS/FAIL gate checklist and outreach-ready URL |
-| Week of Mon 26 Oct | Invite reviewers across unrelated organizations, *after approval* | Sent-date log, replies, GitHub technical issues and verified usage |
+| Fri 23 Oct | Final release-readiness review with Naveen, then publish/share externally if approved; label the release according to verified readiness | PASS/FAIL gate checklist, approved outreach copy, public URL and any actual sent-date log |
 
-The dates are work targets, not guarantees. If a critical integration is unfinished, invite engineers to evaluate the documented experimental scope rather than describing unimplemented features as ready.
+October 23 is the target for external publication or sharing, not a guarantee of production-grade status. If any critical production gate remains open, do not describe the toolkit as production-ready; share a clearly identified experimental evaluation build only if Naveen approves.
 
 ## External review program
 
