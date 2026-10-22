@@ -31,4 +31,4 @@ Offer a reproducible command-line utility for reviewing repeated test results an
 - Provides a transparent dependency-aware prioritization heuristic using explicit component mappings
 - Includes synthetic fixtures, tests, and documentation
 
-**Limitations:** No calibrated prediction of future failures, no inferred source-code dependencies, no automated remediation, and no verified external adoption. Reporter compatibility must be assessed against specific upstream versions.
+**Limitations:** No calibrated prediction of future failures, no inferred source-code dependencies, no automated remediation, and no automated CI history storage. Reporter compatibility must be assessed against specific upstream versions.
