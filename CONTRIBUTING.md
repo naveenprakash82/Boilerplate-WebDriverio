@@ -13,7 +13,7 @@ This project is a small test reliability utility with independent examples for W
 Requirements: Node.js 18 or later, npm, and Chrome or Chromium for browser tests.
 
 ```bash
-npm install
+npm ci
 npm run check
 npm run test:unit
 npm test
