@@ -13,7 +13,8 @@
     "playwright:convert": "node src/reliability/playwrightJsonCli.js",
     "prioritize": "node src/reliability/priorityCli.js",
     "analyze:batch": "node src/reliability/batchCli.js",
-    "compare:priorities": "node src/reliability/comparePrioritiesCli.js"
+    "compare:priorities": "node src/reliability/comparePrioritiesCli.js",
+    "analyze:manifest": "node src/reliability/manifestCli.js"
   },
   "devDependencies": {
     "@wdio/cli": "^9.0.0",
