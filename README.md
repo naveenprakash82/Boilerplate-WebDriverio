@@ -2,8 +2,6 @@
 
 An experimental JavaScript toolkit for reviewing repeated test results from supported Jest and Playwright JSON reports, with WebdriverIO browser examples and a transparent dependency-based investigation heuristic.
 
-**Seeking independent technical evaluation:** [Run the 15-minute evaluation and report findings](docs/EXTERNAL_EVALUATION.md). Reproducible failures, missing reporter formats and comparisons against basic baselines are particularly valuable.
-
 The project helps answer two practical questions:
 - Which tests have shown inconsistent results across repeated runs?
 - Which tests may deserve attention when a particular application component changes?
@@ -19,7 +17,7 @@ Requires Node.js 18 or later and npm. Chrome or Chromium is needed only for the 
 ```bash
 git clone https://github.com/naveenprakash82/Boilerplate-WebDriverio.git
 cd Boilerplate-WebDriverio
-npm install
+npm ci
 npm run test:unit
 npm run analyze -- examples/sample-runs.json
 ```
