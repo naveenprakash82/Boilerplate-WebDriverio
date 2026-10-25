@@ -46,3 +46,14 @@ test('rejects unsupported format and empty runs',t=>{
   const f=setup(t);f.write('manifest.json',{format:'xml',runs:[]});
   assert.throws(()=>analyzeManifest(path.join(f.root,'manifest.json')),/Expected format/);
 });
+
+test('rejects collections exceeding the aggregate report byte limit', t => {
+  const f = setup(t);
+  const padding = ' '.repeat(17 * 1024 * 1024);
+  fs.appendFileSync(path.join(f.root, 'first.json'), padding);
+  fs.appendFileSync(path.join(f.root, 'second.json'), padding);
+  assert.throws(() => analyzeManifest(f.manifest([
+    { runId: 'one', file: 'first.json' },
+    { runId: 'two', file: 'second.json' }
+  ])), /32 MiB aggregate limit/);
+});
