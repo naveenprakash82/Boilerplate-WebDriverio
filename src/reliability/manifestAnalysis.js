@@ -13,6 +13,8 @@ function analyzeManifest(file, warn = () => {}) {
       !Array.isArray(manifest.runs) || !manifest.runs.length || manifest.runs.length > 100) {
     throw new TypeError('Expected format jest/playwright and 1–100 runs');
   }
+  const MAX_TOTAL_REPORT_BYTES = 32 * 1024 * 1024;
+  let totalReportBytes = 0;
   const seenIds = new Set(), seenPaths = new Set(), seenHashes = new Map();
   const runs = manifest.runs.map((entry, i) => {
     if (!entry || typeof entry.runId !== 'string' || !entry.runId.trim() ||
@@ -31,6 +33,10 @@ function analyzeManifest(file, warn = () => {}) {
     seenPaths.add(reportPath);
     const stat = fs.statSync(reportPath);
     if (!stat.isFile() || stat.size > 20*1024*1024) throw new Error('Invalid report size or type: '+entry.file);
+    totalReportBytes += stat.size;
+    if (totalReportBytes > MAX_TOTAL_REPORT_BYTES) {
+      throw new Error('Manifest reports exceed 32 MiB aggregate limit');
+    }
     const bytes = fs.readFileSync(reportPath);
     const hash = crypto.createHash('sha256').update(bytes).digest('hex');
     if (seenHashes.has(hash)) warn('Byte-identical reports: '+seenHashes.get(hash)+' and '+runId);
