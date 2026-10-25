@@ -35,7 +35,7 @@ The command reads files only. It does not verify that run IDs correspond to actu
 
 - Supports one reporter format per manifest, with 1 to 100 runs.
 - Each report path must be relative to the manifest directory and resolve within that directory. Duplicate resolved paths and run IDs are rejected.
-- The manifest is limited to 1 MiB and each report to 20 MiB. Malformed JSON and unsupported reporter records are rejected.
+- The manifest is limited to 1 MiB, each report to 20 MiB, and the total report input to 32 MiB. Malformed JSON and unsupported reporter records are rejected.
 - A missing test in a particular run is tracked separately from a test explicitly marked skipped.
 - The analyzer reports observed outcomes and failure rates. It does not estimate causal dependencies, predict future failures, or prove ranking effectiveness.
 - JUnit XML is not supported by the manifest command. Convert supported XML reports separately when the JUnit adapter is available.
